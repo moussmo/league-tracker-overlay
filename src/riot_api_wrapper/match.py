@@ -1,0 +1,35 @@
+import json
+import requests 
+
+class Match():
+    def __init__(self, engine, match_id):
+        self.engine = engine
+        self.match_id = match_id
+        self.game_info = self._get_game_info()
+
+    def _get_game_info(self):
+        url = "https://{}.api.riotgames.com/lol/match/v5/matches/{}".format(self.engine.get_region(), self.match_id)
+        headers = self.engine.get_default_headers()
+        response = requests.get(url, headers=headers)
+        return response.json()
+    
+    def get_participant(self, puuid):
+        participants = self.game_info['info']['participants']
+        
+        for x in participants : 
+            if x['puuid'] == puuid:
+                participant = x
+                break
+        
+        assert participant is not None
+        return participant
+
+    def get_champion_played(self, puuid):
+        participant = self.get_participant(puuid)
+        return {'id' : participant['championId'],
+                'name' : participant['championName']}
+
+
+    def get_victory_boolean(self, puuid):
+        participant = self.get_participant(puuid)
+        return participant['win']
