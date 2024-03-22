@@ -1,6 +1,7 @@
 import json
 import requests 
 
+from src.riot_api_wrapper.champion import Champion
 class Match():
     def __init__(self, engine, match_id):
         self.engine = engine
@@ -26,8 +27,7 @@ class Match():
 
     def get_champion_played(self, puuid):
         participant = self.get_participant(puuid)
-        return {'id' : participant['championId'],
-                'name' : participant['championName']}
+        return Champion(self.engine, participant['championId'])
 
 
     def get_victory_boolean(self, puuid):

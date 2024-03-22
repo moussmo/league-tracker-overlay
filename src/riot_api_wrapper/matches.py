@@ -1,6 +1,7 @@
 import os
 import requests 
 from src.riot_api_wrapper.match import Match
+from src.riot_api_wrapper.champion import Champion
 
 class Matches():
     def __init__(self, engine, matches_ids):

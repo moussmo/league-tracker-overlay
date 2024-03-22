@@ -6,6 +6,7 @@ sys.path.append('.')
 from src.riot_api_wrapper.engine import Engine
 from src.riot_api_wrapper.account import Account
 from src.riot_api_wrapper.matches import Matches
+from src.riot_api_wrapper.champion import Champion
 
 if __name__=='__main__':
     region = "europe"
@@ -24,8 +25,9 @@ if __name__=='__main__':
     victory_booleans = matches.get_victory_booleans_list(puuid)
     champions_played = matches.get_champions_played(puuid)
     
-    breakpoint
+    vignettes = [champion.get_processed_image(victory_boolean) for champion, victory_boolean in zip(champions_played, victory_booleans)]
 
+    
 
 
 
