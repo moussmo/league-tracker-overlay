@@ -19,16 +19,17 @@ if __name__=='__main__':
     engine = Engine(region)
     account = Account(engine, game_name, tag_line)
     puuid = account.get_puuid()
-    matches_ids = account.get_recent_matches_ids(count=count, startepoch=launch_time-2000)
+    matches_ids = account.get_recent_matches_ids(count=count, startepoch=launch_time-10000)
 
     matches = Matches(engine, matches_ids)
     victory_booleans = matches.get_victory_booleans_list(puuid)
     champions_played = matches.get_champions_played(puuid)
     
-    vignettes = [champion.get_processed_image(victory_boolean) for champion, victory_boolean in zip(champions_played, victory_booleans)]
+    vignettes = [champion.get_processed_vignette(victory_boolean) for champion, victory_boolean in zip(champions_played, victory_booleans)]
 
     
 
+    
 
 
     

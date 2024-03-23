@@ -2,6 +2,7 @@ import json
 import requests 
 
 from src.riot_api_wrapper.champion import Champion
+
 class Match():
     def __init__(self, engine, match_id):
         self.engine = engine
@@ -21,8 +22,11 @@ class Match():
             if x['puuid'] == puuid:
                 participant = x
                 break
+        try : 
+            assert participant is not None
+        except : 
+            raise Exception("Player requested is not part of this match.")
         
-        assert participant is not None
         return participant
 
     def get_champion_played(self, puuid):

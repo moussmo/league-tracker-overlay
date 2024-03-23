@@ -25,5 +25,5 @@ class Account():
         headers = self.engine.get_default_headers()
         response = requests.get(url, headers=headers)
         return response.json()
-
+    
         
