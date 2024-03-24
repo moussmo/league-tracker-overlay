@@ -9,6 +9,9 @@ class Match():
         self.match_id = match_id
         self.game_info = self._get_game_info()
 
+    def get_match_id(self):
+        return self.match_id
+    
     def _get_game_info(self):
         url = "https://{}.api.riotgames.com/lol/match/v5/matches/{}".format(self.engine.get_region(), self.match_id)
         headers = self.engine.get_default_headers()

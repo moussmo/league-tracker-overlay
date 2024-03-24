@@ -1,5 +1,6 @@
 import requests 
 from src.utils.utils import convert_to_url_format
+from src.riot_api_wrapper.matches import Matches
 
 class Account():
     def __init__(self, engine, game_name, tag_line):
@@ -20,10 +21,10 @@ class Account():
         response_json = self._get_account_by_riot_id().json()
         return response_json['puuid']
 
-    def get_recent_matches_ids(self, count, startepoch=0):
+    def get_recent_matches(self, count, startepoch=0):
         url = "https://{}.api.riotgames.com/lol/match/v5/matches/by-puuid/{}/ids?startTime={}&start=0&count={}".format(self.engine.get_region(), self.puuid, startepoch, count)
         headers = self.engine.get_default_headers()
-        response = requests.get(url, headers=headers)
-        return response.json()
+        matches_ids = requests.get(url, headers=headers).json()
+        matches = Matches(self.engine, matches_ids)
+        return matches
     
-        
