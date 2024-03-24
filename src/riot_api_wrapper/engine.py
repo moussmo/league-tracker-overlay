@@ -4,7 +4,7 @@ class Engine():
         self.default_headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
             "Accept-Language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
-            "X-Riot-Token": "RGAPI-e362e434-3f23-47bf-8459-bb2d0fb48d2c"
+            "X-Riot-Token": "RGAPI-e5ce3e47-f922-4eb7-bc5d-4c72435fc76b"
             }
         
     def get_default_headers(self):

@@ -7,7 +7,7 @@ class Account():
         self.engine = engine
         self.game_name = game_name
         self.tag_line = tag_line
-        self.puuid = self.get_puuid()
+        self.puuid = self._get_puuid()
 
     def _get_account_by_riot_id(self):
         game_name_formatted = convert_to_url_format(self.game_name)
@@ -17,7 +17,7 @@ class Account():
         response = requests.get(url, headers=headers)
         return response
     
-    def get_puuid(self):
+    def _get_puuid(self):
         response_json = self._get_account_by_riot_id().json()
         return response_json['puuid']
 

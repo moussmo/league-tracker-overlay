@@ -34,7 +34,7 @@ class Match():
 
     def get_champion_played(self, puuid):
         participant = self.get_participant(puuid)
-        return Champion(self.engine, participant['championId'])
+        return Champion(self.engine, participant['championId'], participant['championName'])
 
 
     def get_victory_boolean(self, puuid):
