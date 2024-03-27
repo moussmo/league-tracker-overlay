@@ -9,7 +9,7 @@ from src.overlay.overlay import Overlay
 def refresh(account : Account, overlay : Overlay, launch_time):
     puuid = account.puuid
 
-    matches = account.get_recent_matches(count=count, startepoch=launch_time-10000)
+    matches = account.get_recent_matches(count=count, startepoch=launch_time-200000)
     already_displayed_matches_ids = overlay.get_already_displayed_matches_ids()
 
     new_matches = matches.remove_matches_ids(already_displayed_matches_ids)
@@ -19,8 +19,8 @@ def refresh(account : Account, overlay : Overlay, launch_time):
     
     new_vignettes = [champion.get_processed_vignette(victory_boolean) for champion, victory_boolean in zip(champions_played, victory_booleans)]
 
-    overlay.append_new_matches(new_matches.get_matches_ids())
     overlay.display_new_matches(new_vignettes)
+    overlay.append_new_matches(new_matches.get_matches_ids())
 
     overlay.root.after(5000, lambda : refresh(account, overlay, launch_time))
 
@@ -38,6 +38,7 @@ if __name__=='__main__':
 
     refresh(account, overlay, launch_time)
 
+    print('Running NOW')
     overlay.mainloop()
    
 

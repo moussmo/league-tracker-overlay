@@ -23,5 +23,13 @@ class Champion():
     
     def get_processed_vignette(self, victory_boolean):
         vignette = self.get_vignette()
-        processed_vignette = vignette
+        if victory_boolean : 
+            mat = (0.5,  0, 0, 0,
+                   0, 1.1, 0, 0,
+                   0, 0, 0.5, 0)
+        else : 
+            mat = (1.1,  0, 0, 0,
+                   0, 0.5, 0, 0,
+                   0, 0, 0.5, 0)
+        processed_vignette = vignette.convert('RGB', mat)
         return processed_vignette
