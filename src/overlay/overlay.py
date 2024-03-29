@@ -1,5 +1,5 @@
 import tkinter as tk
-from PIL import Image, ImageTk
+from PIL import ImageTk
 
 class Overlay:
 
@@ -34,5 +34,11 @@ class Overlay:
     def get_already_displayed_matches_ids(self):
         return self.already_displayed_matches_ids
     
+    def withdraw(self):
+        self.root.withdraw()
+
+    def deiconify(self):
+        self.root.deiconify()
+
     def mainloop(self):
         self.root.mainloop()
