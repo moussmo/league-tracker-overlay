@@ -11,7 +11,6 @@ if __name__=='__main__':
 
     login_window = Login(overlay)
 
-    print('Running NOW')
     overlay.mainloop()
    
 
