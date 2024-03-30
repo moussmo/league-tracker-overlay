@@ -9,30 +9,34 @@ class Login(Toplevel):
 
     def __init__(self, parent):
         super().__init__()
-        self.title('Login')
-        self.geometry('500x300')
+        self.title('League Tatracker')
+        self.geometry('300x150')
         self.parent = parent
-        #self.protocol('WM_DELETE_WINDOW', root.quit)
-        self.game_name_label = tk.Label(self, text="Game name :")
-        self.game_name_label.pack()
+        self.protocol('WM_DELETE_WINDOW', self.quit)
 
-        self.game_name_entry = tk.Entry(self)
-        self.game_name_entry.pack()
+        self.frame = tk.Frame(self)
+        self.frame.place(relx=0.5, rely=0.5, anchor='center')
 
-        self.tag_line_label = tk.Label(self, text="Tag line : ")
-        self.tag_line_label.pack()
+        self.game_name_label = tk.Label(self.frame, text="Game name :")
+        self.game_name_label.grid(row=0, column=0)
 
-        self.tag_line_entry = tk.Entry(self)
-        self.tag_line_entry.pack()
+        self.game_name_entry = tk.Entry(self.frame)
+        self.game_name_entry.grid(row=0, column=1)
 
-        self.region_label = tk.Label(self, text='Region :')
-        self.region_label.pack()
+        self.tag_line_label = tk.Label(self.frame, text="Tag line : ")
+        self.tag_line_label.grid(row=1, column= 0)
 
-        self.region_entry = tk.Entry(self)
-        self.region_entry.pack()
+        self.tag_line_entry = tk.Entry(self.frame)
+        self.tag_line_entry.grid(row=1, column = 1)
 
-        self.button = Button(self, text='Login', command=self.login)
-        self.button.pack()
+        self.region_label = tk.Label(self.frame, text='Region :')
+        self.region_label.grid(row=2, column = 0)
+
+        self.region_entry = tk.Entry(self.frame)
+        self.region_entry.grid(row=2, column = 1)
+
+        self.button = Button(self.frame, text='Login', command=self.login)
+        self.button.grid(row=3, column = 0, columnspan = 2, sticky="EW", pady=4)
         
     def login(self):
         game_name = self.game_name_entry.get()
