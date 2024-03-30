@@ -1,11 +1,9 @@
 import tkinter as tk
+import time
 from tkinter import Toplevel, Button, messagebox
 
 from src.riot_api_wrapper.engine import Engine
 from src.riot_api_wrapper.account import Account
-from src.overlay.overlay import Overlay
-from src.overlay.login import Login
-
 
 class Login(Toplevel):
 
@@ -44,6 +42,9 @@ class Login(Toplevel):
         if len(game_name) == 0 or len(tag_line)==0 or len(region)==0 :
             messagebox.showerror("Login Failed", "Please provide correct credentials.")
         else :
-            self.parent.refresh()
+            launch_time = int(time.time())
+            engine = Engine(region)
+            account = Account(engine, game_name, tag_line)
+            self.parent.refresh(account, launch_time)
             self.destroy()
             self.parent.deiconify()

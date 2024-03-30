@@ -2,7 +2,6 @@ import tkinter as tk
 from PIL import ImageTk
 
 class Overlay:
-
     VIGNETTES_PER_ROW = 8
 
     def __init__(self):
@@ -17,11 +16,8 @@ class Overlay:
         self.root.attributes('-topmost', True)
 
         self.root.overrideredirect(True)
-
-    def append_new_matches(self, new_matches_ids): 
-        self.already_displayed_matches_ids.extend(new_matches_ids)
         
-    def display_new_matches(self, new_vignettes):
+    def _display_new_matches(self, new_vignettes):
         new_vignettes = list(reversed(new_vignettes))
         for i, vignette in enumerate(new_vignettes) : 
             row_index = (len(self.already_displayed_matches_ids) + i) // self.VIGNETTES_PER_ROW
@@ -42,3 +38,22 @@ class Overlay:
 
     def mainloop(self):
         self.root.mainloop()
+
+    def refresh(self, account, launch_time):
+        puuid = account.puuid
+
+        matches = account.get_recent_matches(count=20, startepoch=launch_time)
+        already_displayed_matches_ids = self.get_already_displayed_matches_ids()
+
+        new_matches = matches.remove_matches_ids(already_displayed_matches_ids)
+
+        victory_booleans = new_matches.get_victory_booleans_list(puuid)
+        champions_played = new_matches.get_champions_played(puuid)
+        
+        new_vignettes = [champion.get_processed_vignette2(victory_boolean) for champion, victory_boolean in zip(champions_played, victory_booleans)]
+
+        self._display_new_matches(new_vignettes)
+
+        self.already_displayed_matches_ids.extend(new_matches.get_matches_ids())
+
+        self.root.after(30000, lambda : self.refresh(account, launch_time))
