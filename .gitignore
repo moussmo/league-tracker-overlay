@@ -3,3 +3,8 @@ __pycache__/
 *.py[cod]   
 
 *.ipynb
+
+*.spec
+
+dist/
+build/

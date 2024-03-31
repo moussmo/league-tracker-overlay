@@ -10,7 +10,12 @@ class Login(Toplevel):
     def __init__(self, parent):
         super().__init__()
         self.title('League Tatracker')
-        self.geometry('400x150')
+
+        window_width = 400
+        window_height = 150
+        x_coordinates, y_coordinates = self._calculate_center_screen_coordinates(window_width=window_width, window_height=window_height)
+        self.geometry('{}x{}+{}+{}'.format(window_width, window_height, x_coordinates, y_coordinates))
+
         self.parent = parent
         self.protocol('WM_DELETE_WINDOW', self.quit)
 
@@ -47,20 +52,32 @@ class Login(Toplevel):
 
         for i in range(2):
             self.frame.columnconfigure(i, pad = 4)
-        
+    
+    def _calculate_center_screen_coordinates(self, window_width, window_height):
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        x_coordinate = int((screen_width/2) - (window_width/2))
+        y_coordinate = int((screen_height/2) - (window_height/2))
+        return x_coordinate, y_coordinate
+    
     def login(self):
-        game_name = self.game_name_entry.get()
-        tag_line = self.tag_line_entry.get()
-        region = self.region_entry.get().lower()
+        game_name = self.game_name_entry.get().strip()
+        tag_line = self.tag_line_entry.get().strip()
+        region = self.region_entry.get().strip().lower()
 
         if len(game_name) == 0 or len(tag_line)==0 or len(region)==0 :
             messagebox.showerror("Login Failed", "Please provide correct credentials.")
         else :
-            launch_time = int(time.time())
-            engine = Engine(region)
-            account = Account(engine, game_name, tag_line)
-            self.destroy()
+            try : 
+                launch_time = int(time.time())
+                engine = Engine(region)
+                account = Account(engine, game_name, tag_line)
+                self.frame.destroy()
 
-            self.parent.refresh(account, launch_time)
-            print('Running NOW')
-            self.parent.deiconify()
+                self.parent.refresh(account, launch_time)
+                self.parent.deiconify()
+                
+                self.label = tk.Label(self, text="Tracker currently active", font=15, bg=self.background_color, fg= 'white')
+                self.label.place(relx=0.5, rely=0.5, anchor='center')
+            except:
+                messagebox.showerror("Error accountered when accessing the server.")
