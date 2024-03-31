@@ -39,7 +39,7 @@ Every game that you played while the tracker is running appears in the top left 
 
 A game is represented by : 
 * The champion played.
-* A color strip undernearth the champion thumbnail that shows whether the game was won (<div style = "color:green; display:inline">*green* </div>) or lost (<div style = "color:red; display:inline">*red* </div>
+* A color strip undernearth the champion thumbnail that shows whether the game was won (*green*) or lost (*red*)
 
 Every row display 6 games.
 
