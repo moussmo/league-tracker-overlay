@@ -2,7 +2,7 @@ import tkinter as tk
 from PIL import ImageTk
 
 class Overlay(tk.Tk):
-    VIGNETTES_PER_ROW = 8
+    VIGNETTES_PER_ROW = 6
 
     def __init__(self):
         super().__init__()

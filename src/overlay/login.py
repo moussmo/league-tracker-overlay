@@ -9,7 +9,7 @@ class Login(Toplevel):
 
     def __init__(self, parent):
         super().__init__()
-        self.title('League Tatracker')
+        self.title('League Tracker')
 
         window_width = 400
         window_height = 150
@@ -20,6 +20,7 @@ class Login(Toplevel):
         self.protocol('WM_DELETE_WINDOW', self.quit)
 
         self.background_color = "gray18"
+        self.bind( "<Return>", self.login)
 
         self.configure(background='gray18')
 
@@ -60,23 +61,24 @@ class Login(Toplevel):
         y_coordinate = int((screen_height/2) - (window_height/2))
         return x_coordinate, y_coordinate
     
-    def login(self):
+    def login(self, event=None):
         game_name = self.game_name_entry.get().strip()
         tag_line = self.tag_line_entry.get().strip()
         region = self.region_entry.get().strip().lower()
 
         if len(game_name) == 0 or len(tag_line)==0 or len(region)==0 :
-            messagebox.showerror("Login Failed", "Please provide correct credentials.")
+            messagebox.showerror("Login Failed", "Please fill all entries.")
         else :
             try : 
-                launch_time = int(time.time())
                 engine = Engine(region)
                 account = Account(engine, game_name, tag_line)
-                self.frame.destroy()
 
+                launch_time = int(time.time())
+                self.frame.destroy()
+                
                 self.parent.refresh(account, launch_time)
                 self.parent.deiconify()
-                
+
                 self.label = tk.Label(self, text="Tracker currently active", font=15, bg=self.background_color, fg= 'white')
                 self.label.place(relx=0.5, rely=0.5, anchor='center')
             except:
