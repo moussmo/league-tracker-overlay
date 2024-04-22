@@ -1,7 +1,7 @@
 # League Tracker Overlay 
 
 Overlay that displays a player's recent League of Legends games on the screen's top left border. \
-The game data is shown in the overlay is the champion played and whether the game was won or lost.
+The game data shown in the overlay is the champion played and whether the game was won or lost.
 
 <p align='center'>
 <img src="screenshots/single_row.png" alt="Tracker example"/>
