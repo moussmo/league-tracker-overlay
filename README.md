@@ -17,7 +17,7 @@ If you simply want to run the overlay, simply download the latest release here h
 In order for the overlay to retrieve your recent games data from the Riot Games server, you are required to input some information:
 * The **game name** of your account (it is your League of Legends summoner name).
 * The **tag line** of your account (it depends on the account and the region it is in, check your League of Legends/Riot Games account to find the tag line).
-* The **region** if your account. You can choose a region from the dropdown list.
+* The **region** of your account. You can choose a region from the dropdown list.
 
 You can then click on the Launch Tracker button.
 
@@ -27,7 +27,7 @@ You can then click on the Launch Tracker button.
 
 # How to know whether the overlay is running ? 
 
-If the provided credentials are correct, you get a message signaling that the tracker is running. This small window is hideable but must not be closed, as closing it implies closing the tracker.
+If the provided credentials are correct, you get a message signaling that the tracker is running. This small window is hideable but must not be closed, as closing it also closes the tracker.
 
 <p align='center'>
 <img src="screenshots/tracker_running.png" alt="Tracker running"/>
@@ -35,7 +35,7 @@ If the provided credentials are correct, you get a message signaling that the tr
 
 # Tracker data 
 
-Every game that you played while the tracker is running appears in the top left of your screen.
+Every game that you play while the tracker is running will appear un the tracket overlay window after the game ends. The overlay refreshes every 30 seconds, so the maximum time it takes the tracker to load the latest game's data is 30 seconds after its end.
 
 A game is represented by : 
 * The champion played.
