@@ -41,7 +41,7 @@ A game is represented by :
 * The champion played.
 * A color strip undernearth the champion thumbnail that shows whether the game was won (*green*) or lost (*red*)
 
-Every row display 6 games.
+Every row displays 6 games.
 
 <p align='center'>
 <img src="screenshots/tracker_loading_screen.png" alt="Tracker loading screen"/>
